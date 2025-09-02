@@ -12,3 +12,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+app.post('/prueba1', (req, res) => {
+  res.send('Hello World! prueba 1');
+});
