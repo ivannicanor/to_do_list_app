@@ -1,9 +1,10 @@
 const express = require('express')
 const { connectDB } = require('./db');
+require('dotenv').config();
 
 
 const app = express()
-const port = 3000
+
 
 
 //Conectar a la base de datos
@@ -16,6 +17,6 @@ app.get('/', (req, res) => {
 })
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on http://localhost:${process.env.PORT}`)
 })
