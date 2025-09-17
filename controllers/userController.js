@@ -1,7 +1,7 @@
 // controllers/userController.js
 const { User } = require('../models');
 
-// ✅ Crear usuario
+// ✅ Crear usuario  
 exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body); // req.body debe tener los campos del modelo
@@ -11,7 +11,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// ✅ Obtener todos los usuarios
+// ✅ Obtener todos los usuarios http://localhost:3000/api/users/
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.findAll();
@@ -21,7 +21,7 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-// ✅ Obtener un usuario por id
+// ✅ Obtener un usuario por id http://localhost:3000/api/users/1
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);

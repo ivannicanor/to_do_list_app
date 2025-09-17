@@ -12,12 +12,14 @@ const { sequelize } = require('./db');
 const { User, Project, Task } = require('./models');
 const userRoutes = require('./routes/userRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const projectRoutes = require('./routes/projectRoutes');
 
 app.use(express.json()); // Para leer JSON en req.body
 
 // Endpoints
-app.use('/api/users', userRoutes);
-app.use('/api/tasks', taskRoutes);
+app.use('/users', userRoutes);
+app.use('/tasks', taskRoutes);
+app.use('/projects', projectRoutes);
 
 //Sincronizar modelos con la base de datos
 sequelize.sync({ alter: true })
