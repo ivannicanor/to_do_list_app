@@ -13,6 +13,7 @@ const { User, Project, Task } = require('./models');
 const userRoutes = require('./routes/userRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 app.use(express.json()); // Para leer JSON en req.body
 
@@ -20,6 +21,7 @@ app.use(express.json()); // Para leer JSON en req.body
 app.use('/users', userRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/projects', projectRoutes);
+app.use('/auth', authRoutes);
 
 //Sincronizar modelos con la base de datos
 sequelize.sync({ alter: true })
