@@ -1,14 +1,33 @@
-const express = require('express')
+const express = require('express');
 const { connectDB } = require('./db');
 require('dotenv').config();
-
-
 const app = express()
 
-
-
+//1º - CONECTAR A LA BASE DE DATOS Y SINCRONIZAR MODELOS
 //Conectar a la base de datos
 connectDB();
+
+//Importar modelos
+const { sequelize } = require('./db');
+const { User, Project, Task } = require('./models');
+const userRoutes = require('./routes/userRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+
+app.use(express.json()); // Para leer JSON en req.body
+
+// Endpoints
+app.use('/api/users', userRoutes);
+app.use('/api/tasks', taskRoutes);
+
+//Sincronizar modelos con la base de datos
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log("Modelos sincronizados con la base de datos");
+  })
+  .catch((error) => {
+    console.error("Error al sincronizar los modelos con la base de datos:", error);
+  });
+
 
 
 //Ruta de prueba
