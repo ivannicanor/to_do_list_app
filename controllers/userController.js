@@ -2,7 +2,7 @@
 const { User } = require('../models');
 
 // ✅ Crear usuario
-const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body); // req.body debe tener los campos del modelo
     res.status(201).json(user);
@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
 };
 
 // ✅ Obtener todos los usuarios
-const getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
   try {
     const users = await User.findAll();
     res.json(users);
@@ -22,7 +22,7 @@ const getUsers = async (req, res) => {
 };
 
 // ✅ Obtener un usuario por id
-const getUserById = async (req, res) => {
+exports.getUserById = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
     if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -33,7 +33,7 @@ const getUserById = async (req, res) => {
 };
 
 // ✅ Actualizar usuario
-const updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const [updated] = await User.update(req.body, {
       where: { id: req.params.id }
@@ -49,7 +49,7 @@ const updateUser = async (req, res) => {
 };
 
 // ✅ Eliminar usuario
-const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
   try {
     const deleted = await User.destroy({ where: { id: req.params.id } });
     if (!deleted) return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -59,4 +59,3 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getUsers, getUserById, updateUser, deleteUser };

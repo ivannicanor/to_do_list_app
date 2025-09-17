@@ -1,7 +1,7 @@
 // controllers/taskController.js
 const { Task } = require('../models');
 
-const createTask = async (req, res) => {
+exports.createTask = async (req, res) => {
   try {
     const task = await Task.create(req.body);
     res.status(201).json(task);
@@ -10,7 +10,7 @@ const createTask = async (req, res) => {
   }
 };
 
-const getTasks = async (req, res) => {
+exports.getTasks = async (req, res) => {
   try {
     const tasks = await Task.findAll();
     res.json(tasks);
@@ -19,7 +19,7 @@ const getTasks = async (req, res) => {
   }
 };
 
-const getTaskById = async (req, res) => {
+exports.getTaskById = async (req, res) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ message: 'Tarea no encontrada' });
@@ -29,7 +29,7 @@ const getTaskById = async (req, res) => {
   }
 };
 
-const updateTask = async (req, res) => {
+exports.updateTask = async (req, res) => {
   try {
     const [updated] = await Task.update(req.body, {
       where: { id: req.params.id }
@@ -44,7 +44,7 @@ const updateTask = async (req, res) => {
   }
 };
 
-const deleteTask = async (req, res) => {
+exports.deleteTask = async (req, res) => {
   try {
     const deleted = await Task.destroy({ where: { id: req.params.id } });
     if (!deleted) return res.status(404).json({ message: 'Tarea no encontrada' });
@@ -54,4 +54,3 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { createTask, getTasks, getTaskById, updateTask, deleteTask };
