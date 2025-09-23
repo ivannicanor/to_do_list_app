@@ -1,9 +1,10 @@
+
 // db.js
 //Configuración de la base de datos usando Sequelize
 const { Sequelize } = require('sequelize');
 //Variable de conexión a la base de datos
-const sequelize = new Sequelize("todo_app", "postgres", "admin",{
-    host: "localhost",
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD,{
+    host: process.env.DB_HOST,
     dialect: "postgres"
 });
 //Función para conectar a la base de datos

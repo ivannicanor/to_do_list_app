@@ -1,13 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const { connectDB } = require('./db');
-require('dotenv').config();
 const app = express()
 
 //1º - CONECTAR A LA BASE DE DATOS Y SINCRONIZAR MODELOS
 //Conectar a la base de datos
 connectDB();
 
-//Importar modelos
+//Importar modelos y rutas
 const { sequelize } = require('./db');
 const { User, Project, Task } = require('./models');
 const userRoutes = require('./routes/userRoutes');
