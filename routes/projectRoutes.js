@@ -2,11 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const projectController = require('../controllers/projectController');
+const authMiddleware = require('../middleware/authMiddleware'); 
 
-router.post('/', projectController.createProject);
-router.get('/', projectController.getProjects);
-router.get('/:id', projectController.getProjectById);
-router.put('/:id', projectController.updateProject);
-router.delete('/:id', projectController.deleteProject);
+router.post('/', authMiddleware.verifyToken ,projectController.createProject);
+router.get('/', authMiddleware.verifyToken ,projectController.getProjects);
+router.get('/:id', authMiddleware.verifyToken ,projectController.getProjectById);
+router.put('/:id', authMiddleware.verifyToken ,projectController.updateProject);
+router.delete('/:id', authMiddleware.verifyToken ,projectController.deleteProject);
 
 module.exports = router;
