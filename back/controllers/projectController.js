@@ -86,7 +86,7 @@ exports.createTaskToProject = async (req, res) => {
     const taskData = {
       title: req.body.title,
       description: req.body.description,
-      projectId: req.params.projectId,
+      id_proyecto: req.params.projectId,
       id_usuario: req.user.sub
     };
 
@@ -101,7 +101,7 @@ exports.getTasksInProject = async (req, res) => {
   try {
     const tasks = await Task.findAll({
       where: {
-        projectId: req.params.projectId,
+        id_proyecto: req.params.projectId,
         id_usuario: req.user.sub
       }
     });
@@ -116,7 +116,7 @@ exports.updateTaskInProject = async (req, res) => {
     const [updated] = await Task.update(req.body, {
       where: {
         id: req.params.taskId,
-        projectId: req.params.projectId,
+        id_proyecto: req.params.projectId,
         id_usuario: req.user.sub
       }
     });
@@ -134,7 +134,7 @@ exports.deleteTaskFromProject = async (req, res) => {
     const deleted = await Task.destroy({
       where: {
         id: req.params.taskId,
-        projectId: req.params.projectId,
+        id_proyecto: req.params.projectId,
         id_usuario: req.user.sub
       }
     });
